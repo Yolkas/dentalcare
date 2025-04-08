@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalCare - Portal de Doctores</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/doctor.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body class="doctor-portal">
+    <div class="auth-container doctor">
+        <div class="auth-box">
+            <div class="auth-header">
+                <img src="img/logo.png" alt="DentalCare Logo" class="auth-logo">
+                <h1>Portal de Doctores</h1>
+                <p>Accede a tu cuenta para gestionar pacientes y citas</p>
+            </div>
+            <form id="doctor-login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="doctor-id">ID de Doctor</label>
+                    <input type="text" id="doctor-id" name="doctorId" required placeholder="Ingresa tu ID de doctor">
+                </div>
+                <div class="form-group">
+                    <label for="doctor-password">Contraseña</label>
+                    <div class="password-input">
+                        <input type="password" id="doctor-password" name="password" required placeholder="Ingresa tu contraseña">
+                        <button type="button" class="toggle-password" aria-label="Mostrar contraseña">👁️</button>
+                    </div>
+                </div>
+                <button type="submit" class="auth-button">Iniciar Sesión</button>
+            </form>
+            <div class="auth-links">
+                <a href="#" id="forgot-password">¿Olvidaste tu contraseña?</a>
+                <a href="login.html">Portal de Pacientes</a>
+            </div>
+        </div>
+    </div>
+    <script src="js/db.js"></script>
+    <script src="js/init-doctors.js"></script>
+    <script src="js/doctor-auth.js"></script>
+</body>
+</html>

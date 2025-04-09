@@ -125,7 +125,7 @@
         </div>
         
         <div class="role-buttons">
-            <a href="./doctor-login.html" class="role-button doctor">
+            <a href="/dentalcare/doctor-login.html" class="role-button doctor">
                 <span class="role-icon">👨‍⚕️</span>
                 <div class="role-text">
                     <h2>¿Eres Doctor?</h2>
@@ -133,7 +133,7 @@
                 </div>
             </a>
 
-            <a href="./patient-login.html" class="role-button patient">
+            <a href="/dentalcare/patient-login.html" class="role-button patient">
                 <span class="role-icon">👤</span>
                 <div class="role-text">
                     <h2>¿Eres Paciente?</h2>
@@ -145,15 +145,16 @@
 
     <script>
         window.addEventListener('load', () => {
+            const basePath = '/dentalcare';
             // If user is already logged in as doctor, redirect to doctor dashboard
             if (localStorage.getItem('currentDoctor')) {
-                window.location.href = './doctor-dashboard.html';
+                window.location.href = basePath + '/doctor-dashboard.html';
                 return;
             }
             
             // If user is already logged in as patient, redirect to patient dashboard
             if (localStorage.getItem('currentUser')) {
-                window.location.href = './index.html';
+                window.location.href = basePath + '/index.html';
                 return;
             }
         });

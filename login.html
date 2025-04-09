@@ -213,7 +213,7 @@
                 </div>
             </a>
 
-            <a href="./patient-login.html" class="role-button patient">
+            <a href="./login-patient.html" class="role-button patient">
                 <span class="role-icon">👤</span>
                 <div class="role-text">
                     <h2>¿Eres Paciente?</h2>
@@ -224,7 +224,6 @@
     </div>
 
     <script>
-        // Check if we need to redirect from a PWA launch
         window.addEventListener('load', () => {
             // If user is already logged in as doctor, redirect to doctor dashboard
             if (localStorage.getItem('currentDoctor')) {

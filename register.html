@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - DentalCare</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#00BFA5">
+</head>
+<body class="register-page">
+    <div class="register-container">
+        <div class="register-header">
+            <img src="./img/logo.png" alt="DentalCare Logo" class="register-logo">
+            <h1>Registro de Paciente</h1>
+            <p>Crea tu cuenta para gestionar tus citas dentales</p>
+        </div>
+        
+        <form id="register-form" class="register-form">
+            <div class="form-group">
+                <label for="name">Nombre completo:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">Fecha de nacimiento:</label>
+                <input type="date" id="birthDate" required>
+            </div>
+            <button type="submit">Registrarse</button>
+        </form>
+        
+        <div class="auth-links">
+            <a href="./patient-login.html">¿Ya tienes cuenta? Inicia sesión</a>
+            <a href="./login.html">Volver al inicio</a>
+        </div>
+    </div>
+    
+    <script src="./js/db.js"></script>
+    <script src="./js/auth.js"></script>
+</body>
+</html>

@@ -18,8 +18,9 @@ class DoctorAuth {
 
     checkAuth() {
         const currentDoctor = localStorage.getItem('currentDoctor');
-        if (currentDoctor && window.location.pathname === '/doctor-login.html') {
-            window.location.href = '/doctor-dashboard.html';
+        if (!currentDoctor && 
+            window.location.pathname !== './doctor-login.html') {
+            window.location.href = './doctor-login.html';
         }
     }
 
@@ -59,7 +60,7 @@ class DoctorAuth {
                 // Show success message and redirect
                 this.showToast('Inicio de sesión exitoso', 'success');
                 setTimeout(() => {
-                    window.location.href = '/doctor-dashboard.html';
+                    window.location.href = './doctor-dashboard.html';
                 }, 1000);
             } else {
                 this.showError('Contraseña incorrecta');
@@ -114,6 +115,11 @@ class DoctorAuth {
         toast.textContent = message;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
+    }
+
+    handleLogout() {
+        localStorage.removeItem('currentDoctor');
+        window.location.href = './login.html';
     }
 }
 

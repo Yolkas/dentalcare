@@ -6,114 +6,72 @@
     <title>DentalCare - Bienvenido</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#00BFA5">
     <style>
         body {
             min-height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-color) 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: var(--background-light);
         }
 
         .role-selection {
-            max-width: 400px;
-            margin: 2rem;
-            text-align: center;
+            background: white;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
         }
 
         .welcome-header {
-            margin-bottom: 3rem;
-            animation: fadeInDown 0.8s ease;
+            margin-bottom: 2rem;
         }
 
         .welcome-header img {
-            width: 140px;
+            width: 120px;
             height: auto;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .welcome-header h1 {
-            color: white;
-            font-size: 2.2rem;
-            margin: 0.5rem 0;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-            font-weight: 600;
-        }
-
-        .welcome-header p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
         }
 
         .role-buttons {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
-            animation: fadeInUp 0.8s ease;
+            margin-top: 2rem;
         }
 
         .role-button {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 1.8rem;
-            border-radius: 16px;
-            background: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 2rem;
+            background: var(--background-light);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
             text-decoration: none;
-            color: inherit;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .role-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
         }
 
         .role-button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .role-button:hover::before {
-            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .role-button.doctor {
-            background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-primary-dark) 100%);
-            color: white;
+            border-color: var(--primary-color);
         }
 
         .role-button.patient {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-dark) 100%);
-            color: white;
+            border-color: var(--secondary-color);
         }
 
         .role-icon {
-            font-size: 2.2rem;
-            margin-right: 1.2rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 2.5rem;
+            margin-right: 1rem;
         }
 
         .role-text {
@@ -123,59 +81,21 @@
         .role-text h2 {
             margin: 0;
             font-size: 1.4rem;
-            font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
         }
 
         .role-text p {
-            margin: 0.3rem 0 0;
-            font-size: 0.95rem;
-            opacity: 0.95;
+            margin: 0.5rem 0 0;
+            color: var(--text-secondary);
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                align-items: flex-start;
-            }
-
+        @media (max-width: 768px) {
             .role-selection {
-                margin: 1rem;
                 padding: 1.5rem;
             }
 
             .welcome-header img {
-                width: 120px;
+                width: 100px;
             }
 
             .welcome-header h1 {
@@ -213,7 +133,7 @@
                 </div>
             </a>
 
-            <a href="./login-patient.html" class="role-button patient">
+            <a href="./patient-login.html" class="role-button patient">
                 <span class="role-icon">👤</span>
                 <div class="role-text">
                     <h2>¿Eres Paciente?</h2>

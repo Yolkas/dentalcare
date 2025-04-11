@@ -58,7 +58,7 @@ class DentalAuth {
                 // Store user session
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 // Redirect to main app
-                window.location.href = '/dentalcare/index.html';
+                window.location.href = '/index.html';
             } else {
                 this.showError('Credenciales inválidas');
             }
@@ -89,7 +89,7 @@ class DentalAuth {
             // Store user session
             localStorage.setItem('currentUser', JSON.stringify(user));
             // Redirect to main app
-            window.location.href = '/dentalcare/index.html';
+            window.location.href = '/index.html';
         } catch (error) {
             console.error('Error during registration:', error);
             this.showError('Error al registrar usuario. ' + error.message);
@@ -98,18 +98,11 @@ class DentalAuth {
 
     checkAuth() {
         const currentUser = localStorage.getItem('currentUser');
-        const basePath = '/dentalcare';
-        if (!currentUser && 
-            window.location.pathname !== basePath + '/login.html' && 
-            window.location.pathname !== basePath + '/patient-login.html' && 
-            window.location.pathname !== basePath + '/doctor-login.html') {
-            window.location.href = basePath + '/login.html';
+        if (!currentUser && window.location.pathname !== '/login.html' && 
+            window.location.pathname !== '/patient-login.html' && 
+            window.location.pathname !== '/doctor-login.html') {
+            window.location.href = '/login.html';
         }
-    }
-
-    handleLogout() {
-        localStorage.removeItem('currentUser');
-        window.location.href = '/dentalcare/login.html';
     }
 
     showError(message) {

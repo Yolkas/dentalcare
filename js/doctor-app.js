@@ -15,6 +15,7 @@ class DoctorApp {
         await this.loadPatients();
         await this.loadTodayAppointments();
         this.initializeCalendar();
+        this.initNavigation();
     }
 
     initializeEventListeners() {
@@ -55,7 +56,7 @@ class DoctorApp {
     }
 
     async loadDoctorData() {
-        document.getElementById('doctor-name').textContent = `Dr. ${this.currentDoctor.name}`;
+        document.getElementById('doctor-name').textContent = this.currentDoctor.name;
         document.getElementById('doctor-specialty').textContent = this.currentDoctor.specialty;
     }
 
@@ -376,6 +377,73 @@ class DoctorApp {
             console.error('Error starting appointment:', error);
             this.showToast('Error al iniciar la cita', 'error');
         }
+    }
+
+    initNavigation() {
+        const pages = {
+            appointments: document.getElementById('appointments'),
+            patients: document.getElementById('patients'),
+            schedule: document.getElementById('schedule'),
+            history: document.getElementById('history')
+        };
+
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            const page = item.dataset.page;
+            item.addEventListener('click', () => this.navigateTo(page));
+        });
+
+        this.navigateTo('appointments');
+    }
+
+    navigateTo(page) {
+        Object.values(pages).forEach(p => {
+            p.classList.remove('active');
+            p.style.display = 'none';
+        });
+
+        Object.values(navItems).forEach(item => {
+            item.classList.remove('active');
+        });
+
+        pages[page].classList.add('active');
+        pages[page].style.display = 'block';
+        navItems.find(item => item.dataset.page === page).classList.add('active');
+
+        this.loadPageData(page);
+    }
+
+    loadPageData(page) {
+        switch(page) {
+            case 'appointments':
+                this.loadAppointments();
+                break;
+            case 'patients':
+                this.loadPatients();
+                break;
+            case 'schedule':
+                this.loadSchedule();
+                break;
+            case 'history':
+                this.loadHistory();
+                break;
+        }
+    }
+
+    loadAppointments() {
+        console.log('Cargando citas...');
+    }
+
+    loadPatients() {
+        console.log('Cargando pacientes...');
+    }
+
+    loadSchedule() {
+        console.log('Cargando horario...');
+    }
+
+    loadHistory() {
+        console.log('Cargando historial...');
     }
 }
 

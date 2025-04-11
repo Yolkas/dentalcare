@@ -18,10 +18,8 @@ class DoctorAuth {
 
     checkAuth() {
         const currentDoctor = localStorage.getItem('currentDoctor');
-        const basePath = '/dentalcare';
-        if (!currentDoctor && 
-            window.location.pathname !== basePath + '/doctor-login.html') {
-            window.location.href = basePath + '/doctor-login.html';
+        if (currentDoctor && window.location.pathname.includes('doctor-login.html')) {
+            window.location.href = 'doctor-dashboard.html';
         }
     }
 
@@ -61,7 +59,7 @@ class DoctorAuth {
                 // Show success message and redirect
                 this.showToast('Inicio de sesión exitoso', 'success');
                 setTimeout(() => {
-                    window.location.href = '/dentalcare/doctor-dashboard.html';
+                    window.location.href = 'doctor-dashboard.html';
                 }, 1000);
             } else {
                 this.showError('Contraseña incorrecta');
@@ -116,11 +114,6 @@ class DoctorAuth {
         toast.textContent = message;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
-    }
-
-    handleLogout() {
-        localStorage.removeItem('currentDoctor');
-        window.location.href = '/dentalcare/login.html';
     }
 }
 

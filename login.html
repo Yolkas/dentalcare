@@ -4,74 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DentalCare - Bienvenido</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#00BFA5">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
     <style>
         body {
             min-height: 100vh;
             margin: 0;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-color) 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--background-light);
         }
 
         .role-selection {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
+            max-width: 400px;
+            margin: 2rem;
             text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .welcome-header {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
         }
 
         .welcome-header img {
-            width: 120px;
+            width: 140px;
             height: auto;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .welcome-header h1 {
+            color: white;
+            font-size: 2.2rem;
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            font-weight: 600;
+        }
+
+        .welcome-header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .role-buttons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
-            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease;
         }
 
         .role-button {
             display: flex;
             align-items: center;
-            padding: 2rem;
-            background: var(--background-light);
-            border: 2px solid var(--primary-color);
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--text-primary);
+            justify-content: center;
+            padding: 1.8rem;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .role-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .role-button:hover::before {
+            opacity: 1;
         }
 
         .role-button.doctor {
-            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-primary-dark) 100%);
+            color: white;
         }
 
         .role-button.patient {
-            border-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-dark) 100%);
+            color: white;
         }
 
         .role-icon {
-            font-size: 2.5rem;
-            margin-right: 1rem;
+            font-size: 2.2rem;
+            margin-right: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .role-text {
@@ -81,21 +123,59 @@
         .role-text h2 {
             margin: 0;
             font-size: 1.4rem;
-            color: var(--text-primary);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .role-text p {
-            margin: 0.5rem 0 0;
-            color: var(--text-secondary);
+            margin: 0.3rem 0 0;
+            font-size: 0.95rem;
+            opacity: 0.95;
         }
 
-        @media (max-width: 768px) {
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                align-items: flex-start;
+            }
+
             .role-selection {
+                margin: 1rem;
                 padding: 1.5rem;
             }
 
             .welcome-header img {
-                width: 100px;
+                width: 120px;
             }
 
             .welcome-header h1 {
@@ -119,13 +199,13 @@
 <body>
     <div class="role-selection">
         <div class="welcome-header">
-            <img src="./img/logo.png" alt="DentalCare Logo">
+            <img src="img/logo.png" alt="DentalCare Logo">
             <h1>Bienvenido a DentalCare</h1>
             <p>Selecciona tu tipo de usuario para continuar</p>
         </div>
         
         <div class="role-buttons">
-            <a href="/dentalcare/doctor-login.html" class="role-button doctor">
+            <a href="doctor-login.html" class="role-button doctor">
                 <span class="role-icon">👨‍⚕️</span>
                 <div class="role-text">
                     <h2>¿Eres Doctor?</h2>
@@ -133,7 +213,7 @@
                 </div>
             </a>
 
-            <a href="/dentalcare/patient-login.html" class="role-button patient">
+            <a href="patient-login.html" class="role-button patient">
                 <span class="role-icon">👤</span>
                 <div class="role-text">
                     <h2>¿Eres Paciente?</h2>
@@ -144,17 +224,17 @@
     </div>
 
     <script>
+        // Check if we need to redirect from a PWA launch
         window.addEventListener('load', () => {
-            const basePath = '/dentalcare';
             // If user is already logged in as doctor, redirect to doctor dashboard
             if (localStorage.getItem('currentDoctor')) {
-                window.location.href = basePath + '/doctor-dashboard.html';
+                window.location.href = '/doctor-dashboard.html';
                 return;
             }
             
             // If user is already logged in as patient, redirect to patient dashboard
             if (localStorage.getItem('currentUser')) {
-                window.location.href = basePath + '/index.html';
+                window.location.href = '/index.html';
                 return;
             }
         });

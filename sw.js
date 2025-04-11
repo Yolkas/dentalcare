@@ -1,19 +1,18 @@
 const CACHE_NAME = 'dentalcare-v1';
 const urlsToCache = [
-    './',
-    './index.html',
-    './login.html',
-    './doctor-login.html',
-    './patient-login.html',
-    './register.html',
-    './css/style.css',
-    './css/doctor.css',
-    './js/app.js',
-    './js/auth.js',
-    './js/db.js',
-    './js/doctor-auth.js',
-    './manifest.json',
-    './img/logo.png'
+    '/',
+    '/index.html',
+    '/login.html',
+    '/doctor-login.html',
+    '/patient-login.html',
+    '/css/style.css',
+    '/css/doctor.css',
+    '/js/app.js',
+    '/js/auth.js',
+    '/js/db.js',
+    '/js/doctor-auth.js',
+    '/manifest.json',
+    '/img/logo.png'
 ];
 
 self.addEventListener('install', event => {

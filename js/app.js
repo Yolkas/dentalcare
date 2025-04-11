@@ -24,7 +24,7 @@ class DentalCareApp {
         const currentUser = localStorage.getItem('currentUser');
         if (!currentUser) {
             // If no user is logged in, redirect to login page
-            window.location.href = './login.html';
+            window.location.href = '/login.html';
             return;
         }
         this.currentUser = JSON.parse(currentUser);
@@ -34,7 +34,7 @@ class DentalCareApp {
     async setupServiceWorker() {
         if ('serviceWorker' in navigator) {
             try {
-                await navigator.serviceWorker.register('./sw.js');
+                await navigator.serviceWorker.register('/sw.js');
             } catch (error) {
                 console.error('ServiceWorker registration failed:', error);
             }
@@ -517,7 +517,7 @@ class DentalCareApp {
 
     handleLogout() {
         localStorage.removeItem('currentUser');
-        window.location.href = './login.html';
+        window.location.href = '/login.html';
     }
 
     showNewAppointmentModal() {
@@ -582,7 +582,7 @@ class DentalCareApp {
         // Registro del Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
+                navigator.serviceWorker.register('/sw.js')
                     .then(registration => {
                         console.log('Service Worker registrado con éxito:', registration);
                     })

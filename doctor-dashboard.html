@@ -3,22 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DentalCare - Panel de Doctor</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/doctor.css">
-    <link rel="manifest" href="./manifest.json">
+    <title>DentalCare - Panel del Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
 </head>
-<body class="doctor-dashboard">
-    <div id="doctor-app">
-        <!-- Sidebar Navigation -->
-        <aside class="doctor-sidebar">
-            <div class="doctor-profile">
-                <img src="./img/doctor-avatar.png" alt="Doctor Avatar" class="doctor-avatar">
-                <div class="doctor-info">
-                    <h3 id="doctor-name">Dr. </h3>
-                    <span id="doctor-specialty">Especialidad</span>
-                </div>
-            </div>
+<body>
+    <div id="app">
+        <!-- Main App Section -->
+        <div id="main-app" class="doctor-dashboard">
+            <!-- Navigation -->
             <nav class="doctor-nav">
                 <div class="nav-item active" data-page="appointments">
                     <i class="icon">📅</i>
@@ -36,84 +30,166 @@
                     <i class="icon">📋</i>
                     <span>Historial</span>
                 </div>
+                <div class="nav-item" data-page="settings">
+                    <i class="icon">⚙️</i>
+                    <span>Config</span>
+                </div>
             </nav>
-            <button id="logout-btn" class="logout-button">
-                <i class="icon">🚪</i>
-                <span>Cerrar Sesión</span>
-            </button>
-        </aside>
 
-        <!-- Main Content -->
-        <main class="doctor-main">
-            <!-- Appointments Page -->
-            <section id="appointments" class="doctor-page active">
-                <header class="page-header">
-                    <h2>Gestión de Citas</h2>
-                    <button id="new-doctor-appointment" class="primary-button">
-                        <i class="icon">➕</i> Nueva Cita
-                    </button>
-                </header>
-                <div class="appointments-calendar">
-                    <div class="calendar-header">
-                        <button id="prev-week">◀</button>
-                        <h3 id="current-week">Semana del 8 al 14 de Abril</h3>
-                        <button id="next-week">▶</button>
-                    </div>
-                    <div id="calendar-grid" class="calendar-grid">
-                        <!-- Calendar will be populated by JavaScript -->
-                    </div>
+            <!-- Doctor Info -->
+            <header class="doctor-header">
+                <div class="doctor-info">
+                    <h1><span id="doctor-name"></span></h1>
+                    <p id="doctor-specialty"></p>
                 </div>
-                <div id="today-appointments" class="today-appointments">
-                    <h3>Citas de Hoy</h3>
-                    <div class="appointments-list">
-                        <!-- Today's appointments will be populated here -->
-                    </div>
-                </div>
-            </section>
+                <div class="current-date" id="current-date"></div>
+            </header>
 
-            <!-- Patients Page -->
-            <section id="patients" class="doctor-page">
-                <header class="page-header">
-                    <h2>Pacientes</h2>
-                    <div class="search-bar">
-                        <input type="search" id="patient-search" placeholder="Buscar paciente...">
-                        <button class="search-button">🔍</button>
+            <!-- Main Content -->
+            <main class="doctor-main">
+                <!-- Dashboard Overview -->
+                <section id="dashboard-overview" class="dashboard-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>Citas Hoy</h4>
+                            <div class="stat-value" id="today-appointments-count">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Pacientes Totales</h4>
+                            <div class="stat-value" id="total-patients">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Próxima Cita</h4>
+                            <div class="stat-value" id="next-appointment">--:--</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Citas Pendientes</h4>
+                            <div class="stat-value" id="pending-appointments">0</div>
+                        </div>
                     </div>
-                </header>
-                <div class="patients-grid">
-                    <!-- Patient cards will be populated here -->
-                </div>
-            </section>
+                </section>
 
-            <!-- Schedule Page -->
-            <section id="schedule" class="doctor-page">
-                <header class="page-header">
-                    <h2>Mi Horario</h2>
-                    <button id="edit-schedule" class="secondary-button">
-                        <i class="icon">✏️</i> Editar Horario
-                    </button>
-                </header>
-                <div class="schedule-grid">
-                    <!-- Schedule will be populated here -->
-                </div>
-            </section>
+                <!-- Pages -->
+                <div class="doctor-pages">
+                    <!-- Appointments Page -->
+                    <section id="appointments" class="doctor-page active">
+                        <div class="section-header">
+                            <h2>Gestión de Citas</h2>
+                            <button id="new-doctor-appointment" class="primary-button">
+                                <i class="icon">➕</i> Nueva Cita
+                            </button>
+                        </div>
+                        <div class="today-appointments">
+                            <h3>Citas de Hoy</h3>
+                            <div class="appointments-list">
+                                <!-- Appointments will be loaded dynamically -->
+                            </div>
+                        </div>
+                    </section>
 
-            <!-- History Page -->
-            <section id="history" class="doctor-page">
-                <header class="page-header">
-                    <h2>Historial de Pacientes</h2>
-                    <div class="filter-controls">
-                        <input type="date" id="history-date-filter">
-                        <select id="history-patient-filter">
-                            <option value="">Todos los pacientes</option>
-                        </select>
-                    </div>
-                </header>
-                <div class="history-list">
-                    <!-- Patient history will be populated here -->
+                    <!-- Patients Page -->
+                    <section id="patients" class="doctor-page">
+                        <div class="section-header">
+                            <h2>Pacientes</h2>
+                            <div class="search-container">
+                                <input type="text" id="patient-search" placeholder="Buscar paciente...">
+                            </div>
+                        </div>
+                        <div class="patients-grid">
+                            <!-- Patients will be loaded dynamically -->
+                        </div>
+                    </section>
+
+                    <!-- Schedule Page -->
+                    <section id="schedule" class="doctor-page">
+                        <div class="section-header">
+                            <h2>Horario Semanal</h2>
+                            <div class="calendar-controls">
+                                <button id="prev-week" class="icon-button">◀</button>
+                                <span id="current-week">Semana Actual</span>
+                                <button id="next-week" class="icon-button">▶</button>
+                            </div>
+                        </div>
+                        <div id="calendar-grid" class="calendar-grid">
+                            <!-- Calendar will be loaded dynamically -->
+                        </div>
+                    </section>
+
+                    <!-- History Page -->
+                    <section id="history" class="doctor-page">
+                        <div class="section-header">
+                            <h2>Historial de Citas</h2>
+                            <div class="filter-controls">
+                                <input type="date" id="history-date-filter">
+                                <select id="history-patient-filter">
+                                    <option value="">Todos los pacientes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="history-list">
+                            <!-- History will be loaded dynamically -->
+                        </div>
+                    </section>
+
+                    <!-- Settings Page -->
+                    <section id="settings" class="doctor-page">
+                        <div class="settings-section">
+                            <h2>Configuración</h2>
+                            <div class="settings-grid">
+                                <div class="settings-card">
+                                    <div class="settings-header">
+                                        <span class="settings-icon">🔔</span>
+                                        <h3>Notificaciones</h3>
+                                    </div>
+                                    <div class="settings-content">
+                                        <div class="setting-item">
+                                            <label class="switch">
+                                                <input type="checkbox" id="notifications-toggle">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span>Activar notificaciones</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="settings-card">
+                                    <div class="settings-header">
+                                        <span class="settings-icon">🎨</span>
+                                        <h3>Apariencia</h3>
+                                    </div>
+                                    <div class="settings-content">
+                                        <div class="setting-item">
+                                            <label class="switch">
+                                                <input type="checkbox" id="dark-mode-toggle">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span>Modo oscuro</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <h2>Perfil del Doctor</h2>
+                            <div class="profile-info">
+                                <div class="info-item">
+                                    <label>Especialidad:</label>
+                                    <span id="doctor-specialty-profile"></span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Email:</label>
+                                    <span id="doctor-email"></span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Fecha de registro:</label>
+                                    <span id="doctor-register-date"></span>
+                                </div>
+                            </div>
+                            <button id="logout-btn" class="danger-btn">Cerrar Sesión</button>
+                        </div>
+                    </section>
                 </div>
-            </section>
-        </main>
+            </main>
+        </div>
     </div>
 
     <!-- New Appointment Modal -->
@@ -146,7 +222,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="appointment-duration">Duración</label>
+                    <label for="appointment-duration">Duración (minutos)</label>
                     <select id="appointment-duration" required>
                         <option value="30">30 minutos</option>
                         <option value="60">1 hora</option>
@@ -156,8 +232,8 @@
                 </div>
                 <div class="form-group">
                     <label for="appointment-notes">Notas</label>
-                    <textarea id="appointment-notes" rows="3" 
-                             placeholder="Agregar notas o instrucciones especiales..."></textarea>
+                    <textarea id="appointment-notes" rows="4" 
+                             placeholder="Notas adicionales sobre la cita..."></textarea>
                 </div>
                 <div class="form-actions">
                     <button type="button" class="cancel-btn">Cancelar</button>
@@ -169,18 +245,18 @@
 
     <!-- Patient Details Modal -->
     <div id="patient-details-modal" class="modal">
-        <div class="modal-content wide">
+        <div class="modal-content">
             <div class="modal-header">
                 <h3>Detalles del Paciente</h3>
                 <button class="close-modal">&times;</button>
             </div>
             <div class="patient-details">
-                <!-- Patient details will be populated here -->
+                <!-- Patient details will be loaded dynamically -->
             </div>
         </div>
     </div>
 
-    <script src="./js/db.js"></script>
-    <script src="./js/doctor-app.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/doctor-app.js"></script>
 </body>
 </html>
